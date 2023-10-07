@@ -40,30 +40,76 @@ function generatePassword () {
   let specialcharacterCriteriaArr = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '^', '_', '`', '{', '|', '}', '~']; 
   // I do not know how to include: '\', ']',
 
-  let finalPassword = "";
-
-  let includeLowercase = window.prompt("Would you like to include lower case letters?");
-  console.log(includeLowercase);
-  if (includeLowercase === 'yes' || includeLowercase === "y"){
-    finalPassword = lowercaseCriteriaArr[Math.floor(Math.random() * 26)];
-    console.log(finalPassword);
-  }
-  
-  let includeUppercase = window.prompt("Would you like to include upper case letters?");
-  console.log(includeLowercase);
-  if (includeLowercase === 'yes' || includeLowercase === "y"){
-    finalPassword = uppercaseCriteriaArr[Math.floor(Math.random() * 26)];
-    console.log(finalPassword);
-  }
-
-  // let includeNumeric
-  // let includeSpecial
-
+  // If a password length is added that is too short or long this will prompt the user to enter a number between 8-128
   if (passwordLength < 8 || passwordLength > 128){
     window.alert("Please enter a number 8 - 128.");
     generatePassword();
   } 
+
+  let finalPasswordArray = []; //This will be the arry to hold characters from all selected arrays
+  let finalPassword = ""; // Variable to store the final password string
+
+  let includeLowercase = window.prompt("Would you like to include lower case letters in your password?");
+  if (includeLowercase === "yes" || includeLowercase === "y"){
+    finalPasswordArray.push(...lowercaseCriteriaArr);
+    // finalPassword = finalPassword.concat(lowercaseCriteriaArr[Math.floor(Math.random() * lowercaseCriteriaArr.length)]);
+    // console.log(finalPassword);
+  } 
   
+  // Trying to solve the bug that if they do not put yes or no
+  // else if (includeLowercase === "no" || includeLowercase = "n") {
+  //   alert("We will not include lower case letters.")
+  // } else {
+  //   window.prompt("Would you like to include lower case letters in your password? Please respond with yes or no.");
+  // }
+  
+  
+  let includeUppercase = window.prompt("Would you like to include upper case letters in your password?");
+  if (includeUppercase === "yes" || includeUppercase === "y"){
+    finalPasswordArray.push(...uppercaseCriteriaArr);
+    // finalPassword = finalPassword.concat(uppercaseCriteriaArr[Math.floor(Math.random() * uppercaseCriteriaArr.length)]);
+    // console.log(finalPassword);
+  }
+
+  let includeNumeric = window.prompt("Would you like to include numbers in your password?");
+  if (includeNumeric === "yes" || includeNumeric === "y"){
+    finalPasswordArray.push(...numericCriteriaArr);
+    // finalPassword = numericCriteriaArr[Math.floor(Math.random() * numericCriteriaArr.length)];
+    // console.log(finalPassword);
+  }
+
+  let includeSpecial = window.prompt("Would you like to include special characters in your password?");
+  if (includeSpecial === "yes" || includeSpecial === "y"){
+    finalPasswordArray.push(...specialcharacterCriteriaArr);
+    console.log(finalPasswordArray);
+    // finalPassword = specialcharacterCriteriaArr[Math.floor(Math.random() * specialcharacterCriteriaArr.length)];
+    // console.log("specialCharArr Length: " + specialcharacterCriteriaArr.length);
+    // console.log(finalPassword);
+  }
+
+  if (!includeLowercase && !includeUppercase && !includeNumeric && !includeSpecial){
+    alert("You must say yes to one criteria");
+  }
+
+  // BUG TO FIX - write a statemen that if they do not choose one criteria they will need ot select one!!
+
+  // This will take the passwordLength and loop through asssigning a random character from the arry that holds all the characters 
+  
+  let printPassword = "";
+  for (var i = 0; i < passwordLength; i++) {
+    printPassword += finalPasswordArray[Math.floor(Math.random() * finalPasswordArray.length)];
+  }
+  
+  return printPassword;
+  console.log(printPassword);
+ 
+  
+  // if () {
+  //   printPassword += Math.floor(Math.random() * 10);
+  //   console.log(printPassword);
+  //   return;
+  // }
+
   // else if (typeof passwordLength !== Number) {
   //     window.alert("Please enter a number 8 - 128.");
   //     generatePassword();
