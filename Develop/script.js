@@ -31,9 +31,28 @@ function writePassword() {
 }
 
 // This generates the password by asking the user to input a value and ensuring the number is a value between 8-128
+let passwordLength;
+
+function askPasswordLength() {
+  passwordLength = parseInt(window.prompt("How long would you like your password to be? Please enter a number 8 - 128."));
+
+  if (passwordLength > 7 && passwordLength < 129){
+    alert ("The password will be " + passwordLength + " characters long.");
+  } else if (passwordLength < 8 || passwordLength > 128){
+    // passwordLength = parseInt(window.prompt("How long would you like your password to be? Please enter a number 8 - 128."));
+    askPasswordLength();
+    // generatePassword();
+  } else if (typeof passwordLength !== Number){
+    // passwordLength = parseInt(window.prompt("Please enter a number. How long would you like your password to be? Please enter a number 8 - 128."));
+    askPasswordLength();
+    // generatePassword();
+  }
+}
+
 function generatePassword () {
-  let passwordLength = parseInt(window.prompt("How long would you like your password to be? Please enter a number 8 - 128."));
-  console.log(passwordLength);
+  // let passwordLength = parseInt(window.prompt("How long would you like your password to be? Please enter a number 8 - 128."));
+  // console.log(passwordLength);
+  askPasswordLength();
   let lowercaseCriteriaArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
   let uppercaseCriteriaArr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
   let numericCriteriaArr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -41,16 +60,23 @@ function generatePassword () {
   // I do not know how to include: '\', ']',
 
   // If a password length is added that is too short or long this will prompt the user to enter a number between 8-128
-  if (passwordLength < 8 || passwordLength > 128){
-    window.alert("Please enter a number 8 - 128.");
-    generatePassword();
-  } 
+ 
+  // if (passwordLength > 7 && passwordLength < 129){
+  //   alert ("The password will be " + passwordLength + " characters long.");
+  // } else if (passwordLength < 8 || passwordLength > 128){
+  //   passwordLength = parseInt(window.prompt("How long would you like your password to be? Please enter a number 8 - 128."));
+  //   // generatePassword();
+  // } else if (typeof passwordLength !== Number){
+  //   passwordLength = parseInt(window.prompt("Please enter a number. How long would you like your password to be? Please enter a number 8 - 128."));
+  //   // generatePassword();
+  // }
 
   let finalPasswordArray = []; //This will be the arry to hold characters from all selected arrays
   let finalPassword = ""; // Variable to store the final password string
 
   let includeLowercase = window.prompt("Would you like to include lower case letters in your password?");
   includeLowercase = includeLowercase.toLowerCase();
+  console.log(includeLowercase);
   if (includeLowercase === "yes" || includeLowercase === "y"){
     finalPasswordArray.push(...lowercaseCriteriaArr);
     // finalPassword = finalPassword.concat(lowercaseCriteriaArr[Math.floor(Math.random() * lowercaseCriteriaArr.length)]);
@@ -58,13 +84,15 @@ function generatePassword () {
   } else if (includeLowercase === "no" || includeLowercase === "n") {
     alert("The password will not include lower case letters.");
   } else {
-    includeLowercase = window.prompt("Would you like to include lower case letters in your password? Please respond with yes or no.");
+    includeLowercase = window.prompt("ERROR: Would you like to include lower case letters in your password? Please respond with yes or no.");
   }
+  console.log(finalPasswordArray);
   // Added else if and else to ensure yes or no is entered
   
   
   let includeUppercase = window.prompt("Would you like to include upper case letters in your password?");
   includeUppercase = includeUppercase.toLowerCase();
+  console.log(includeUppercase);
   if (includeUppercase === "yes" || includeUppercase === "y"){
     finalPasswordArray.push(...uppercaseCriteriaArr);
     // finalPassword = finalPassword.concat(uppercaseCriteriaArr[Math.floor(Math.random() * uppercaseCriteriaArr.length)]);
@@ -74,9 +102,11 @@ function generatePassword () {
   } else {
     includeUppercase = window.prompt("Would you like to include upper case letters in your password? Please respond with yes or no.");
   }
+  console.log(finalPasswordArray);
 
   let includeNumeric = window.prompt("Would you like to include numbers in your password?");
   includeNumeric = includeNumeric.toLowerCase();
+  console.log(includeNumeric);
   if (includeNumeric === "yes" || includeNumeric === "y"){
     finalPasswordArray.push(...numericCriteriaArr);
     // finalPassword = numericCriteriaArr[Math.floor(Math.random() * numericCriteriaArr.length)];
@@ -86,24 +116,34 @@ function generatePassword () {
   } else {
     includeNumeric = window.prompt("Would you like to include numbers in your password? Please respond with yes or no.");
   }
+  console.log(finalPasswordArray);
 
-  let includeSpecial = window.prompt("Would you like to include special characters in your password?");
-  includeSpecial = includeSpecial.toLowerCase();
-  if (includeSpecial === "yes" || includeSpecial === "y"){
-    finalPasswordArray.push(...specialcharacterCriteriaArr);
+  function specialChar(){
+    let includeSpecial = window.prompt("Would you like to include special characters in your password?");
+    includeSpecial = includeSpecial.toLowerCase();
+    console.log(includeSpecial);
+
+    if (includeSpecial === "yes" || includeSpecial === "y"){
+      finalPasswordArray.push(...specialcharacterCriteriaArr);
+      console.log(finalPasswordArray);
+      // finalPassword = specialcharacterCriteriaArr[Math.floor(Math.random() * specialcharacterCriteriaArr.length)];
+      // console.log("specialCharArr Length: " + specialcharacterCriteriaArr.length);
+      // console.log(finalPassword);
+    } else if (includeSpecial === "no" || includeSpecial === "n") {
+      alert("The password will not include special characters.");
+    } else if (includeSpecial !== "yes" || includeSpecial !== "no") {
+      alert("You must enter yes or no.")
+      // includeSpecial = window.prompt("Penguin! Would you like to include special characters in your password? Please respond with yes or no.");
+      specialChar();
+    }
     console.log(finalPasswordArray);
-    // finalPassword = specialcharacterCriteriaArr[Math.floor(Math.random() * specialcharacterCriteriaArr.length)];
-    // console.log("specialCharArr Length: " + specialcharacterCriteriaArr.length);
-    // console.log(finalPassword);
-  } else if (includeSpecial === "no" || includeSpecial === "n") {
-    alert("The password will not include special characters.");
-  } else {
-    includeSpecial = window.prompt("Would you like to include special characters in your password? Please respond with yes or no.");
-  }
+}
 
-  if (!includeLowercase && !includeUppercase && !includeNumeric && !includeSpecial){
-    alert("You must say yes to one criteria");
-  }
+  specialChar();
+
+  // if (!includeLowercase && !includeUppercase && !includeNumeric && !includeSpecial){
+  //   alert("You must say yes to one criteria");
+  // }
 
   // BUG TO FIX - write a statemen that if they do not choose one criteria they will need ot select one!!
 
