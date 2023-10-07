@@ -50,41 +50,55 @@ function generatePassword () {
   let finalPassword = ""; // Variable to store the final password string
 
   let includeLowercase = window.prompt("Would you like to include lower case letters in your password?");
+  includeLowercase = includeLowercase.toLowerCase();
   if (includeLowercase === "yes" || includeLowercase === "y"){
     finalPasswordArray.push(...lowercaseCriteriaArr);
     // finalPassword = finalPassword.concat(lowercaseCriteriaArr[Math.floor(Math.random() * lowercaseCriteriaArr.length)]);
     // console.log(finalPassword);
-  } 
-  
-  // Trying to solve the bug that if they do not put yes or no
-  // else if (includeLowercase === "no" || includeLowercase = "n") {
-  //   alert("We will not include lower case letters.")
-  // } else {
-  //   window.prompt("Would you like to include lower case letters in your password? Please respond with yes or no.");
-  // }
+  } else if (includeLowercase === "no" || includeLowercase === "n") {
+    alert("The password will not include lower case letters.");
+  } else {
+    includeLowercase = window.prompt("Would you like to include lower case letters in your password? Please respond with yes or no.");
+  }
+  // Added else if and else to ensure yes or no is entered
   
   
   let includeUppercase = window.prompt("Would you like to include upper case letters in your password?");
+  includeUppercase = includeUppercase.toLowerCase();
   if (includeUppercase === "yes" || includeUppercase === "y"){
     finalPasswordArray.push(...uppercaseCriteriaArr);
     // finalPassword = finalPassword.concat(uppercaseCriteriaArr[Math.floor(Math.random() * uppercaseCriteriaArr.length)]);
     // console.log(finalPassword);
+  } else if (includeUppercase === "no" || includeUppercase === "n") {
+    alert("The password will not include upper case letters.");
+  } else {
+    includeUppercase = window.prompt("Would you like to include upper case letters in your password? Please respond with yes or no.");
   }
 
   let includeNumeric = window.prompt("Would you like to include numbers in your password?");
+  includeNumeric = includeNumeric.toLowerCase();
   if (includeNumeric === "yes" || includeNumeric === "y"){
     finalPasswordArray.push(...numericCriteriaArr);
     // finalPassword = numericCriteriaArr[Math.floor(Math.random() * numericCriteriaArr.length)];
     // console.log(finalPassword);
+  } else if (includeNumeric === "no" || includeNumeric === "n") {
+    alert("The password will not include numbers.");
+  } else {
+    includeNumeric = window.prompt("Would you like to include numbers in your password? Please respond with yes or no.");
   }
 
   let includeSpecial = window.prompt("Would you like to include special characters in your password?");
+  includeSpecial = includeSpecial.toLowerCase();
   if (includeSpecial === "yes" || includeSpecial === "y"){
     finalPasswordArray.push(...specialcharacterCriteriaArr);
     console.log(finalPasswordArray);
     // finalPassword = specialcharacterCriteriaArr[Math.floor(Math.random() * specialcharacterCriteriaArr.length)];
     // console.log("specialCharArr Length: " + specialcharacterCriteriaArr.length);
     // console.log(finalPassword);
+  } else if (includeSpecial === "no" || includeSpecial === "n") {
+    alert("The password will not include special characters.");
+  } else {
+    includeSpecial = window.prompt("Would you like to include special characters in your password? Please respond with yes or no.");
   }
 
   if (!includeLowercase && !includeUppercase && !includeNumeric && !includeSpecial){
