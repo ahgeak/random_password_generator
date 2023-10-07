@@ -34,24 +34,57 @@ function writePassword() {
 function generatePassword () {
   let passwordLength = parseInt(window.prompt("How long would you like your password to be? Please enter a number 8 - 128."));
   console.log(passwordLength);
+  let lowercaseCriteriaArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+  let uppercaseCriteriaArr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  let numericCriteriaArr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  let specialcharacterCriteriaArr = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '^', '_', '`', '{', '|', '}', '~']; 
+  // I do not know how to include: '\', ']',
+
+  let finalPassword = "";
+
+  let includeLowercase = window.prompt("Would you like to include lower case letters?");
+  console.log(includeLowercase);
+  if (includeLowercase === 'yes' || includeLowercase === "y"){
+    finalPassword = lowercaseCriteriaArr[Math.floor(Math.random() * 26)];
+    console.log(finalPassword);
+  }
+  
+  let includeUppercase = window.prompt("Would you like to include upper case letters?");
+  console.log(includeLowercase);
+  if (includeLowercase === 'yes' || includeLowercase === "y"){
+    finalPassword = uppercaseCriteriaArr[Math.floor(Math.random() * 26)];
+    console.log(finalPassword);
+  }
+
+  // let includeNumeric
+  // let includeSpecial
+
   if (passwordLength < 8 || passwordLength > 128){
     window.alert("Please enter a number 8 - 128.");
     generatePassword();
-  }
+  } 
+  
+  // else if (typeof passwordLength !== Number) {
+  //     window.alert("Please enter a number 8 - 128.");
+  //     generatePassword();
+  //   }
+}
+  // else if (passwordLength !== Number) {
+  //   window.alert("Please enter a number 8 - 128.");
+  //   generatePassword();
+  // }
+
   // To create a random number I will use math floor and random
   // password = Math.floor(Math.random() * 10);
 
+  // This will be used to go through array and
   // let printPassword = "";
   // if (i = 0 , i < passwordLength, i++) {
   //   printPassword += Math.floor(Math.random() * 10);
   //   console.log(printPassword);
   //   return;
   // }
-}
 
 // Add event listener to generate button
 
 generateBtn.addEventListener("click", writePassword);
-
-  
-
