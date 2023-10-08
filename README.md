@@ -10,13 +10,13 @@ To use the random password generator, visit the deployed webpage and click the "
 
 Provide instructions and examples for use. Include screenshots as needed.
 
-Deployed URL:
+Deployed URL: https://ahgeak.github.io/random_password_generator/
 GitHub Repository URL: https://github.com/ahgeak/random_password_generator
 
 Gif of webpage functionality:
     ![screenshot of deployed webpage](./Assets/RandomPasswordGenerator.gif)
 
 ## Credits
-I used documentation from on the mdn website at: https://developer.mozilla.org/en-US/
+I used documentation from the mdn website at: https://developer.mozilla.org/en-US/
 
 I reviewed lessons and practice exercises on W3Shools at: https://www.w3schools.com/ 
