@@ -43,6 +43,7 @@ function generatePassword() {
     includeLowercase = includeLowercase.toLowerCase();
     if (includeLowercase === "yes" || includeLowercase === "y") {
       finalPasswordArray.push(...lowercaseCriteriaArr);
+      alert("The password will include lower case letters.");
     } else if (includeLowercase === "no" || includeLowercase === "n") {
       alert("The password will not include lower case letters.");
     } else {
@@ -58,6 +59,7 @@ function generatePassword() {
     includeUppercase = includeUppercase.toLowerCase();
     if (includeUppercase === "yes" || includeUppercase === "y") {
       finalPasswordArray.push(...uppercaseCriteriaArr);
+      alert("The password will include upper case letters.");
     } else if (includeUppercase === "no" || includeUppercase === "n") {
       alert("The password will not include upper case letters.");
     } else {
@@ -73,6 +75,7 @@ function generatePassword() {
     includeNumeric = includeNumeric.toLowerCase();
     if (includeNumeric === "yes" || includeNumeric === "y") {
       finalPasswordArray.push(...numericCriteriaArr);
+      alert("The password will include numbers.");
     } else if (includeNumeric === "no" || includeNumeric === "n") {
       alert("The password will not include numbers.");
     } else {
@@ -88,6 +91,7 @@ function generatePassword() {
     includeSpecial = includeSpecial.toLowerCase();
     if (includeSpecial === "yes" || includeSpecial === "y") {
       finalPasswordArray.push(...specialcharacterCriteriaArr);
+      alert("The password will include special characters.");
     } else if (includeSpecial === "no" || includeSpecial === "n") {
       alert("The password will not include special characters.");
     } else if (includeSpecial !== "yes" || includeSpecial !== "no") {
@@ -115,7 +119,7 @@ function generatePassword() {
   for (var i = 0; i < passwordLength; i++) {
     printPassword += finalPasswordArray[Math.floor(Math.random() * finalPasswordArray.length)];
   }
-  
+
   return printPassword;
 }
 
